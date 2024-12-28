@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+      <div id="rating">
+        <!-- Rating state start -->
+        <header>
+          <div class="icon-wrapper">
+            <img src="./images/icon-star.svg" alt="" />
+          </div>
+          <h1>How did we do?</h1>
+        </header>
+        <p>
+          Please let us know how we did with your support request. All feedback
+          is appreciated to help us improve our offering!
+        </p>
+        <form id="rating-form">
+          <ol>
+            <li>
+              <label><input type="radio" name="score" value="1" />1</label>
+            </li>
+            <li>
+              <label><input type="radio" name="score" value="2" />2</label>
+            </li>
+            <li>
+              <label><input type="radio" name="score" value="3" />3</label>
+            </li>
+            <li>
+              <label><input type="radio" name="score" value="4" />4</label>
+            </li>
+            <li>
+              <label><input type="radio" name="score" value="5" />5</label>
+            </li>
+          </ol>
+          <button type="submit">SUBMIT</button>
+        </form>
+        <!-- Rating state end -->
+      </div>
+      <dialog id="thank-you-modal">
+        <!-- Thank you state start -->
+        <header>
+          <img src="./images/illustration-thank-you.svg" alt="" />
+          <h2>
+            <span
+              >You selected <output id="rating-score"></output> out of 5</span
+            >
+          </h2>
+        </header>
+        <strong>Thank you!</strong>
+        <p>
+          We appreciate you taking the time to give a rating. If you ever need
+          more support, don’t hesitate to get in touch!
+        </p>
+        <!-- Thank you state end -->
+      </dialog>
+    </main>
+    <script>
+      let ratingForm = document.getElementById("rating-form");
+      let modal = document.getElementById("thank-you-modal");
+      let scoreOutput = document.getElementById("rating-score");
+
+      ratingForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let score = ratingForm.elements.score.value;
+        if (!score) {
+          alert("Please select a score!");
+          return;
+        }
+        scoreOutput.textContent = score;
+        modal.showModal();
+      });
+      modal.addEventListener("close", () => {
+        ratingForm.reset();
+      });
+    </script>
+  </body>
+</html>
